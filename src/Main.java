@@ -4,10 +4,6 @@ import Models.Title;
 import TimeCalculator.Calculator;
 import Models.Serie;
 import TimeCalculator.RecomendationFilter;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 
 
@@ -73,5 +69,6 @@ public class Main {
         ep.setNumber(8);
         ep.setSerie(lost);
         ep.setEpName("Confidence Man");
+
     }
 }
