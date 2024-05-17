@@ -1,7 +1,6 @@
 package Models;
 
 import TimeCalculator.Classification;
-import java.util.ArrayList;
 
 public class Film extends Title implements Classification {
     private String Diretor;

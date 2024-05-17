@@ -1,6 +1,6 @@
 package Models;
+import Exceptions.ConversionErrorException;
 
-import javax.swing.border.TitledBorder;
 import java.util.ArrayList;
 
 public class Title implements Comparable<Title> {
@@ -11,13 +11,25 @@ public class Title implements Comparable<Title> {
     private int TotalRatings;
     private int Duration;
 
+
     public void setDuration(int duration) {
         Duration = duration;
     }
-
+    public Title(OMDBTitle myOMDBtitle) {
+        this.Name = myOMDBtitle.title();
+        this.Year = Integer.valueOf(myOMDBtitle.year().substring(0,4));
+        if (myOMDBtitle.year().length() > 4 ){
+            throw new ConversionErrorException("It was not possible to convert the year because have more than 4 characters");
+        }
+        if(myOMDBtitle.runtime().length() == 6) {
+            this.Duration = Integer.valueOf(myOMDBtitle.runtime().substring(0,2));
+        } else if (myOMDBtitle.runtime().length() == 7) {
+            this.Duration = Integer.valueOf(myOMDBtitle.runtime().substring(0,3));
+        }
+    }
     public Title (String name, int year){
-        Name = name;
-        Year = year;
+        this.Name = name;
+        this.Year = year;
     }
     public String getName() {
         return Name;
@@ -52,7 +64,6 @@ public class Title implements Comparable<Title> {
     public void AddSerie(Serie serie) {
         list.add(serie);
     }
-
     public void DisplayDetails() {
         System.out.println("Name: " + getName());
         System.out.println("Release year: " + getYear());
@@ -69,5 +80,10 @@ public class Title implements Comparable<Title> {
     @Override
     public int compareTo(Title o) {
         return Double.valueOf(this.getYear()).compareTo(Double.valueOf(o.getYear()));
+    }
+
+    @Override
+    public String toString() {
+        return "(Title: " + Name + ", Year: " + Year + ", Duration: " + Duration + " min)";
     }
 }

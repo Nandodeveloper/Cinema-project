@@ -1,8 +1,5 @@
 package Models;
-import Models.Episode;
 import TimeCalculator.Classification;
-
-import java.util.ArrayList;
 
 public class Serie extends Title implements Classification {
 
